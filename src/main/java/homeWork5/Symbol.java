@@ -1,36 +1,41 @@
 package homeWork5;
 
-
 public class Symbol implements Inter {
-    public String text;
-    boolean isPunctuationMark;
+    boolean dot;
+    public String someTxt;
 
-    Symbol(String text){
-        this.text = text;
-        if(text.matches("([\u3030.,!?;:()])")){
-            isPunctuationMark = true;
-            System.out.print(this.text);
+    // проверка
+    Symbol(String someTxt){
+        this.someTxt = someTxt;
+        if(someTxt.matches("([\u3030.,!?;:()])")){
+            dot = true;
+            System.out.print(this.someTxt);
         }
         else {
-            isPunctuationMark = false;
-            System.out.print(" " + this.text);
+            dot = false;
+            System.out.print(" " + this.someTxt);
         }
 
     }
+    //хэш
+    @Override
+    public int hashCode() {
+        return someTxt.hashCode();
+        /*
+Если хеш-коды разные, то и входные объекты гарантированно разные.
+Если хеш-коды равны, то входные объекты не всегда равны.
+         */
+    }
 
+
+    //проверка на равность
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (!(o instanceof Symbol)) return false;
+        if (this == o) return true;
 
         Symbol word = (Symbol) o;
 
-        return text.equals(word.text);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return text.hashCode();
+        return someTxt.equals(word.someTxt);
     }
 }

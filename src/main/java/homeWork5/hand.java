@@ -35,91 +35,94 @@ public class hand {
     public void parse() throws IOException {
         //Класс BufferedWriter записывает текст в поток, предварительно буферизируя записываемые
         //символы, тем самым снижая количество обращений к физическому носителю для записи данных.
-        BufferedReader in = new BufferedReader(new FileReader("C:\\task2-master\\src\\main\\files\\lol1.txt"));
+        BufferedReader link = new BufferedReader(new FileReader("C:\\task2-master\\src\\main\\files\\lol1.txt"));
         // Класс FileWriter является производным от класса Writer. Он используется для записи текстовых файлов.
-        String cont = "";
-        String[] sentences;
+        String cont = "    ";
+        String[] strgs;
 
         this.content = new ArrayList<Statement>();
-        String bar = in.readLine();
+        String bar = link.readLine();
         String readLine = bar;
-
+        /*
+        The java.io.BufferedReader.readline() method read a line of text.
+         A line is considered to be terminated by any one of a line feed ('\n'), a carriage return ('\r'), or a carriage return followed
+         immediately by a linefeed.
+         */
         while (readLine != null) {
 
             if (readLine.equals("")) {
                 bar = bar + readLine;
-                readLine = in.readLine();
+                readLine = link.readLine();
                 continue;
             }
 
-            int i;
-            int index = 0;
-            String c = "";
+            int quantity = 0;
+            String var = "";
 
             if (DELIMITERS.indexOf(bar.charAt(bar.length() - 1)) > -1) {
-                c += bar.charAt(bar.length() - 1);
+                var = var + bar.charAt(bar.length() - 1);
             }
-            sentences = bar.split("[.?\u2026]+");
+            strgs = bar.split("[.?\u3030]+");
+            int ind = 0;
+            while(ind < strgs.length - 1){
+                cont = strgs[ind] + bar.charAt(strgs[ind].length() + quantity);
+                quantity = quantity + cont.length();
+                this.content.add(new Statement(cont));
+                ind++;
+            }
 
-            for (i = 0; i < sentences.length - 1; i++) {
-                cont = sentences[i] + bar.charAt(sentences[i].length() + index);
-                index += cont.length();
+            cont = strgs[ind] + var;
+            if (!var.equals("")) {
                 this.content.add(new Statement(cont));
+                cont = " ";
             }
-            cont = sentences[i] + c;
-            if (!c.equals("")) {
-                this.content.add(new Statement(cont));
-                cont = "";
-            }
-            readLine = in.readLine();
-            bar = cont + " " + readLine;
+            readLine = link.readLine();
+            bar = cont + "     " + readLine;
         }
     }
-
-    // 3. Найти такое слово в первом предложении, которого нет ни в одном из
-    // остальных предложений.
+    //3
     public Symbol Task3() {
-        Set<Symbol> allWords = new HashSet<Symbol>();
-        for (int i = 1; i < content.size(); i++) {
-            allWords.addAll(content.get(i).words);
+        Set<Symbol> allsymb = new HashSet<Symbol>();
+        int indx = 1;
+        while (indx < content.size()){
+            allsymb.addAll(content.get(indx).getSign);
+            indx++;
         }
-        for (Symbol word : content.get(0).words) {
-            if (!allWords.contains(word))
-                return word;
+        for (Symbol key : content.get(0).getSign) {
+            if (!allsymb.contains(key))
+                return key;
         }
         return null;
     }
 
-    //	4. Во всех вопросительных предложениях текста найти и напечатать без повторений
-    //	слова заданной длины.
+    //4
     public HashSet<String> Task4(int length) {
-        HashSet<String> words = new HashSet<String>();
+        HashSet<String> symbs = new HashSet<String>();
         int i = 0;
         while (i < content.size()) {
-            if (content.get(i).text.endsWith("?")) {
+            if (content.get(i).symb.endsWith("?")) {
                 int j = 0;
-                while (j < content.get(i).words.size()){
-                    if (content.get(i).words.get(j).text.length() == length) {
-                        words.add(content.get(i).words.get(j).text);
+                while (j < content.get(i).getSign.size()){
+                    if (content.get(i).getSign.get(j).someTxt.length() == length) {
+                        symbs.add(content.get(i).getSign.get(j).someTxt);
                     }
                     j++;
                 }
             }
             i++;
         }
-        return words;
+        return symbs;
     }
 
-    // 1. Найти наибольшее количество предложений текста, в которых есть одинаковые
-    // слова.
+    //1
     public int Task1() {
-        int count = 0;
-        for (Statement sentence : content) {
-            Set<Symbol> key = new HashSet<Symbol>(sentence.words);
-            if (key.size() < sentence.words.size()) {
-                count++;
+        int cnt = 0;
+        for (Statement getWord: content) {
+            Set<Symbol> key = new HashSet<Symbol>(getWord.getSign);
+            if (key.size() < getWord.getSign.size()) {
+                cnt++;
             }
         }
-        return count;
+        return cnt;
     }
 }
