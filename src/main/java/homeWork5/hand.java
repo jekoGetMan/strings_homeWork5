@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import java.io.IOException; //ввод & вывод exceptions
+import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 

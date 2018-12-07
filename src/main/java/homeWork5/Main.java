@@ -3,8 +3,6 @@ package homeWork5;
 import java.io.IOException;
 
  class Main {
-     //Часть исключений может обрабатывать сама система. Но можно создать собственные исключения при помощи оператора throw.
-     //Код выглядит так: throw экземпляр_Throwable
     public static void main(String[] args) throws IOException {
         hand handler = new hand();
         handler.parse();

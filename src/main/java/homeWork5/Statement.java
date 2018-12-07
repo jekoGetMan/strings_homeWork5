@@ -7,7 +7,6 @@ public class Statement implements Comparable, Inter {
 	public String symb;
 	public ArrayList<Symbol> getSign;
 
-	//размер
 	public Statement(ArrayList<String> sign) {
 		this.getSign = new ArrayList<Symbol>();
 		int cnt = 0;
@@ -17,7 +16,7 @@ public class Statement implements Comparable, Inter {
 		}
 		setText();
 	}
-	//позиция
+
 	public Statement(String wrd) {
 		this.symb = wrd;
         this.getSign  = new ArrayList<Symbol>();
@@ -40,7 +39,6 @@ public class Statement implements Comparable, Inter {
 		System.out.println("\n");
 		}
 
-		//меняем
 	private void setText() {
 		StringBuffer link = new StringBuffer();
 		int index = 0;
@@ -54,7 +52,6 @@ public class Statement implements Comparable, Inter {
 		this.symb = link.toString();
 	}
 
-	//проверка сравнением
     public int compareTo(Object obj) {
 		Statement var = (Statement) obj;
         if (this.getSign.size() < var.getSign.size()) {

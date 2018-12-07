@@ -17,18 +17,11 @@ public class Symbol implements Inter {
         }
 
     }
-    //хэш
     @Override
     public int hashCode() {
         return someTxt.hashCode();
-        /*
-Если хеш-коды разные, то и входные объекты гарантированно разные.
-Если хеш-коды равны, то входные объекты не всегда равны.
-         */
     }
 
-
-    //проверка на равность
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Symbol)) return false;
