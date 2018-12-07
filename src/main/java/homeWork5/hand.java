@@ -1,30 +1,14 @@
 package homeWork5;
 
 import java.util.ArrayList;
-import java.util.HashSet; // Класс Object имеет метод hashCode(), который используется классом HashSet для эффективного размещения объектов, заносимых в коллекцию.
-// В классах объектов, заносимых в HashSet, этот метод должен быть переопределен (override).
+import java.util.HashSet;
 import java.util.Set;
-/*
-HashSet, TreeSet и LinkedHashSet относятся к семейству Set.
-В множествах Set каждый элемент хранится только в одном экземпляре, а разные реализации Set используют разный порядок хранения элементов.
-В HashSet порядок элементов определяется по сложному алгоритму.
-Если порядок хранения для вас важен, используйте контейнер TreeSet, в котором объекты хранятся отсортированными
-по возрастанию в порядке сравнения или LinkedHashSet с хранением элементов в порядке добавления.
 
-Множества часто используются для проверки принадлежности, чтобы вы могли легко проверить, принадлежит ли объект
-заданному множеству, поэтому на практике обычно выбирается реализация HashSet, оптимизированная для быстрого поиска.
-
- */
 import java.io.IOException; //ввод & вывод exceptions
 import java.io.BufferedReader;
 import java.io.FileReader;
-/*
-                            Task_005
-Создать программу обработки текста учебника по программированию с
-использованием классов: Символ, Слово, Предложение, Знак препинания и
-др. Во всех задачах с формированием текста заменять табуляции и
-последовательности пробелов одним пробелом.
- */
+
+                            //Task_005
 
 public class hand {
 
@@ -33,21 +17,14 @@ public class hand {
     public final static String DELIMITERS = "\u3030.!?";
 
     public void parse() throws IOException {
-        //Класс BufferedWriter записывает текст в поток, предварительно буферизируя записываемые
-        //символы, тем самым снижая количество обращений к физическому носителю для записи данных.
         BufferedReader link = new BufferedReader(new FileReader("C:\\task2-master\\src\\main\\files\\lol1.txt"));
-        // Класс FileWriter является производным от класса Writer. Он используется для записи текстовых файлов.
         String cont = "    ";
         String[] strgs;
 
         this.content = new ArrayList<Statement>();
         String bar = link.readLine();
         String readLine = bar;
-        /*
-        The java.io.BufferedReader.readline() method read a line of text.
-         A line is considered to be terminated by any one of a line feed ('\n'), a carriage return ('\r'), or a carriage return followed
-         immediately by a linefeed.
-         */
+
         while (readLine != null) {
 
             if (readLine.equals("")) {
