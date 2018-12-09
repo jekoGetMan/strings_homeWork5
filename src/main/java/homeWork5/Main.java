@@ -4,6 +4,7 @@ import java.io.IOException;
 
  class Main {
     public static void main(String[] args) throws IOException {
+
         hand handler = new hand();
         handler.parse();
         System.out.println("1)THE FIRST TASK IS:\t" + handler.Task1());

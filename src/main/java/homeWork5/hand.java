@@ -8,8 +8,7 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-                            //Task_005
-
+                                        //Task_005
 public class hand {
 
     ArrayList<Statement> content;

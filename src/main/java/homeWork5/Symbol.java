@@ -11,11 +11,11 @@ public class Symbol implements Inter {
             dot = true;
             System.out.print(this.someTxt);
         }
+
         else {
             dot = false;
             System.out.print(" " + this.someTxt);
         }
-
     }
     @Override
     public int hashCode() {

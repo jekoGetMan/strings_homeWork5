@@ -3,6 +3,7 @@ package homeWork5;
 import java.util.ArrayList;
 
 public class Statement implements Comparable, Inter {
+
 	public final static String DELIMITERS = "\u3030.!?,;:)}";
 	public String symb;
 	public ArrayList<Symbol> getSign;
@@ -17,9 +18,32 @@ public class Statement implements Comparable, Inter {
 		setText();
 	}
 
+	public int compareTo(Object obj) {
+		Statement var = (Statement) obj;
+		if (this.getSign.size() < var.getSign.size()) {
+			return -1;
+		} else if (this.getSign.size() > var.getSign.size()) {
+			return 1;
+		}
+		return 0;
+	}
+
+	private void setText() {
+		StringBuffer link = new StringBuffer();
+		int index = 0;
+		while(index < this.getSign.size()){
+			if (index != 0 && this.getSign.get(index).dot == false) {
+				link.append(" ");
+			}
+			link.append(this.getSign.get(index).someTxt);
+			index++;
+		}
+		this.symb = link.toString();
+	}
+
 	public Statement(String wrd) {
 		this.symb = wrd;
-        this.getSign  = new ArrayList<Symbol>();
+		this.getSign  = new ArrayList<Symbol>();
 		String[] words = wrd.split("[ ] +");
 
 		int indx = 0;
@@ -36,30 +60,7 @@ public class Statement implements Comparable, Inter {
 		}
 		System.out.println("\n");
 		System.out.println("\n");
-		}
-
-	private void setText() {
-		StringBuffer link = new StringBuffer();
-		int index = 0;
-		while(index < this.getSign.size()){
-			if (index != 0 && this.getSign.get(index).dot == false) {
-				link.append(" ");
-			}
-			link.append(this.getSign.get(index).someTxt);
-			index++;
-		}
-		this.symb = link.toString();
 	}
-
-    public int compareTo(Object obj) {
-		Statement var = (Statement) obj;
-        if (this.getSign.size() < var.getSign.size()) {
-            return -1;
-        } else if (this.getSign.size() > var.getSign.size()) {
-            return 1;
-        }
-        return 0;
-    }
 
 	@Override
 	public String toString() {
