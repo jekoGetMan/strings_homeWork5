@@ -36,7 +36,6 @@ public class Statement implements Comparable, Inter {
 		}
 		System.out.println("\n");
 		System.out.println("\n");
-		System.out.println("\n");
 		}
 
 	private void setText() {
